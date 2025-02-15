@@ -4,14 +4,14 @@ return {
     "nvim-tree/nvim-web-devicons", -- Dependency of lualine
 
     -- Theme/Colorscheme 
-	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 
-	-- lspconfig plugin. Manages LSP's
-	-- Configurations:
-	-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
-	"neovim/nvim-lspconfig",
-	"williamboman/mason.nvim",
-	"williamboman/mason-lspconfig.nvim",
+    -- lspconfig plugin. Manages LSP's
+    -- Configurations:
+    -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
+    "neovim/nvim-lspconfig",
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
 
     -- Nvim completation engine
     {"hrsh7th/nvim-cmp", config = function() require("config.nvim-cmp") end},

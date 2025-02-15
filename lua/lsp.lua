@@ -47,10 +47,5 @@ end
 
 lspconfig.pyright.setup({on_attach=on_attach})
 lspconfig.arduino_language_server.setup({on_attach=on_attach})
-lspconfig.jdtls.setup({on_attach=on_attach,
-    -- cmd = {
-    --     "jdtls",
-    --     "--jvm-arg=" .. string.format("-javaagent:%s", vim.fn.expand "$MASON/packages/jdtls/lombok.jar"),
-    -- }
-})
+lspconfig.jdtls.setup({on_attach=on_attach,})
 lspconfig.clangd.setup({on_attach=on_attach})
