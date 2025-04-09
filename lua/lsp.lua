@@ -48,4 +48,37 @@ end
 lspconfig.pyright.setup({on_attach=on_attach})
 lspconfig.arduino_language_server.setup({on_attach=on_attach})
 lspconfig.jdtls.setup({on_attach=on_attach,})
+lspconfig.ts_ls.setup({
+    on_attach=on_attach,
+    init_options = {
+      plugins = {
+        {
+          name = "@vue/typescript-plugin",
+          location = "/usr/lib/node_modules/@vue/typescript-plugin",
+          languages = {"javascript", "typescript", "vue"},
+        },
+      },
+    },
+    filetypes = {
+      "javascript",
+      "typescript",
+      "vue",
+    },
+})
+lspconfig.volar.setup({
+    on_attach=on_attach,
+    init_options = {
+        typescript = {
+            tsdk = '/usr/lib/node_modules/typescript/lib'
+        }
+    },
+    on_new_config = function(new_config, new_root_dir)
+        local lib_path = vim.fs.find('node_modules/typescript/lib', { path = new_root_dir, upward = true })[1]
+        if lib_path then
+          new_config.init_options.typescript.tsdk = lib_path
+        end
+    end
+})
+
 lspconfig.clangd.setup({on_attach=on_attach})
+lspconfig.r_language_server.setup({on_attach=on_attach})
