@@ -82,3 +82,5 @@ lspconfig.volar.setup({
 
 lspconfig.clangd.setup({on_attach=on_attach})
 lspconfig.r_language_server.setup({on_attach=on_attach})
+lspconfig.cssls.setup({on_attach=on_attach})
+

@@ -1,7 +1,11 @@
 return {
     "folke/which-key.nvim",
+
     "nvim-lualine/lualine.nvim",
     "nvim-tree/nvim-web-devicons", -- Dependency of lualine
+
+    "nvim-telescope/telescope.nvim",
+    "nvim-lua/plenary.nvim", -- Dependency of telescope
 
     -- Theme/Colorscheme 
     { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
