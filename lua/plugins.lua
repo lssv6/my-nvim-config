@@ -6,7 +6,6 @@ return {
 
     "nvim-telescope/telescope.nvim",
     "nvim-lua/plenary.nvim", -- Dependency of telescope
-    "BurntSushi/ripgrep", -- Optional dependency for telescope. Needed for the live-grep feature.
 
     -- Theme/Colorscheme 
     { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
