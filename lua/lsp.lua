@@ -47,7 +47,14 @@ end
 
 lspconfig.pyright.setup({on_attach=on_attach})
 lspconfig.arduino_language_server.setup({on_attach=on_attach})
-lspconfig.jdtls.setup({on_attach=on_attach,})
+lspconfig.jdtls.setup({
+    on_attach=on_attach,
+    -- The lines bellow removes the standard .git root_marker that causes jdtls to open multiple clients.
+    root_markers={
+        "settings.gradle",
+        "settings.gradle.kts",
+    },
+})
 lspconfig.ts_ls.setup({
     on_attach=on_attach,
     init_options = {
