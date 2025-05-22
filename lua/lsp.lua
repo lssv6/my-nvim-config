@@ -2,8 +2,6 @@ require("mason").setup()
 require("mason-lspconfig").setup({
     ensure_installed = { "lua_ls" },
 })
--- For each lsp, a setup is required
-local lspconfig = require("lspconfig")
 
 -- Customized on_attach function
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -45,17 +43,11 @@ end
 -- 1. use `:Mason` to install corresponding LSP
 -- 2. add configuration below
 
-lspconfig.pyright.setup({on_attach=on_attach})
-lspconfig.arduino_language_server.setup({on_attach=on_attach})
-lspconfig.jdtls.setup({
-    on_attach=on_attach,
-    -- The lines bellow removes the standard .git root_marker that causes jdtls to open multiple clients.
-    root_markers={
-        "settings.gradle",
-        "settings.gradle.kts",
-    },
-})
-lspconfig.ts_ls.setup({
+-- For each lsp, a setup is required
+vim.lsp.config('pyright', {on_attach=on_attach})
+vim.lsp.config('arduino_language_server', {on_attach=on_attach})
+vim.lsp.config('jdtls', {on_attach=on_attach})
+vim.lsp.config('ts_ls', {
     on_attach=on_attach,
     init_options = {
       plugins = {
@@ -72,7 +64,7 @@ lspconfig.ts_ls.setup({
       "vue",
     },
 })
-lspconfig.volar.setup({
+vim.lsp.config('volar', {
     on_attach=on_attach,
     init_options = {
         typescript = {
@@ -87,7 +79,7 @@ lspconfig.volar.setup({
     end
 })
 
-lspconfig.clangd.setup({on_attach=on_attach})
-lspconfig.r_language_server.setup({on_attach=on_attach})
-lspconfig.cssls.setup({on_attach=on_attach})
+vim.lsp.config('cssls', {on_attach=on_attach})
+-- lspconfig.clangd.setup({on_attach=on_attach})
+-- lspconfig.r_language_server.setup({on_attach=on_attach})
 
