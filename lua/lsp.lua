@@ -47,39 +47,50 @@ end
 vim.lsp.config('pyright', {on_attach=on_attach})
 vim.lsp.config('arduino_language_server', {on_attach=on_attach})
 vim.lsp.config('jdtls', {on_attach=on_attach})
-vim.lsp.config('ts_ls', {
-    on_attach=on_attach,
-    init_options = {
-      plugins = {
-        {
-          name = "@vue/typescript-plugin",
-          location = "/usr/lib/node_modules/@vue/typescript-plugin",
-          languages = {"javascript", "typescript", "vue"},
+vim.lsp.enable('jdtls')
+
+
+
+local vue_language_server_path = vim.fn.expand '$MASON/packages' .. '/vue-language-server' .. '/node_modules/@vue/language-server'
+local tsserver_filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' }
+
+local vue_plugin = {
+  name = '@vue/typescript-plugin',
+  location = vue_language_server_path,
+  languages = { 'vue' },
+  configNamespace = 'typescript',
+}
+local vtsls_config = {
+  settings = {
+    vtsls = {
+      tsserver = {
+        globalPlugins = {
+          vue_plugin,
         },
       },
     },
-    filetypes = {
-      "javascript",
-      "typescript",
-      "vue",
-    },
-})
-vim.lsp.config('volar', {
-    on_attach=on_attach,
-    init_options = {
-        typescript = {
-            tsdk = '/usr/lib/node_modules/typescript/lib'
-        }
-    },
-    on_new_config = function(new_config, new_root_dir)
-        local lib_path = vim.fs.find('node_modules/typescript/lib', { path = new_root_dir, upward = true })[1]
-        if lib_path then
-          new_config.init_options.typescript.tsdk = lib_path
-        end
-    end
-})
+  },
+  filetypes = tsserver_filetypes,
+}
 
-vim.lsp.config('cssls', {on_attach=on_attach})
--- lspconfig.clangd.setup({on_attach=on_attach})
--- lspconfig.r_language_server.setup({on_attach=on_attach})
+-- Alternative to vtsls
+-- local ts_ls_config = {
+--   init_options = {
+--     plugins = {
+--       vue_plugin,
+--     },
+--   },
+--   filetypes = tsserver_filetypes,
+-- }
 
+-- If you are on most recent `nvim-lspconfig`
+local vue_ls_config = {}
+
+-- nvim 0.11 or above
+vim.lsp.config('vtsls', vtsls_config)
+vim.lsp.config('vue_ls', vue_ls_config)
+-- Alternative to vtsls
+--vim.lsp.config('ts_ls', ts_ls_config)
+
+
+vim.lsp.enable({'vtsls', 'vue_ls'}) -- If using `ts_ls` replace `vtsls` to `ts_ls`
