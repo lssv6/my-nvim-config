@@ -47,7 +47,7 @@ end
 vim.lsp.config('pyright', {on_attach=on_attach})
 vim.lsp.config('arduino_language_server', {on_attach=on_attach})
 vim.lsp.config('jdtls', {on_attach=on_attach})
-vim.lsp.enable('jdtls')
+--vim.lsp.enable('jdtls')
 
 
 
@@ -60,6 +60,7 @@ local vue_plugin = {
   languages = { 'vue' },
   configNamespace = 'typescript',
 }
+
 local vtsls_config = {
   settings = {
     vtsls = {
@@ -84,13 +85,14 @@ local vtsls_config = {
 -- }
 
 -- If you are on most recent `nvim-lspconfig`
-local vue_ls_config = {}
+local vue_ls_config = {on_attach=on_attach}
 
 -- nvim 0.11 or above
 vim.lsp.config('vtsls', vtsls_config)
 vim.lsp.config('vue_ls', vue_ls_config)
+
 -- Alternative to vtsls
 --vim.lsp.config('ts_ls', ts_ls_config)
 
-
 vim.lsp.enable({'vtsls', 'vue_ls'}) -- If using `ts_ls` replace `vtsls` to `ts_ls`
+

@@ -34,6 +34,10 @@ return {
     -- Vscode-like pictograms, also dependency for nvim-cmp
     {"onsails/lspkind.nvim",event = { "VimEnter" }},
     -- Treesitter. Better parsing and variable coloring.
-    {"nvim-treesitter/nvim-treesitter", config = function() require("config.nvim-treesitter") end}
+    {
+      'nvim-treesitter/nvim-treesitter',
+      lazy = false,
+      build = ':TSUpdate'
+    }
 }
 
